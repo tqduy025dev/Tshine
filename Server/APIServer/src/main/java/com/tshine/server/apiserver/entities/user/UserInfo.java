@@ -1,6 +1,7 @@
 package com.tshine.server.apiserver.entities.user;
 
-import com.tqd.solution.tqdserver.entities.product.Image;
+
+import com.tshine.server.apiserver.entities.product.Image;
 
 public class UserInfo {
     private String userId;
