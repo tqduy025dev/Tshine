@@ -1,0 +1,141 @@
+package com.tshine.server.apiserver.entities.store;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.sql.Timestamp;
+
+@Entity(name = "vochers")
+public class Vocher {
+    @Id
+    private String id;
+    private String title;
+    private String description;
+    private String type;
+    private Double reducedPrice;
+    private Double reducedRate;
+    private Double reducedMax;
+    private Double billCondition;
+    private Timestamp createdTime;
+    private Timestamp effectiveTime;
+    private Timestamp expirationTime;
+    private String createdBy;
+    private String updatedBy;
+    private String status;
+    private String branchNo;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Double getReducedPrice() {
+        return reducedPrice;
+    }
+
+    public void setReducedPrice(Double reducedPrice) {
+        this.reducedPrice = reducedPrice;
+    }
+
+    public Double getReducedRate() {
+        return reducedRate;
+    }
+
+    public void setReducedRate(Double reducedRate) {
+        this.reducedRate = reducedRate;
+    }
+
+    public Double getReducedMax() {
+        return reducedMax;
+    }
+
+    public void setReducedMax(Double reducedMax) {
+        this.reducedMax = reducedMax;
+    }
+
+    public Double getBillCondition() {
+        return billCondition;
+    }
+
+    public void setBillCondition(Double billCondition) {
+        this.billCondition = billCondition;
+    }
+
+    public Timestamp getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Timestamp createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public Timestamp getEffectiveTime() {
+        return effectiveTime;
+    }
+
+    public void setEffectiveTime(Timestamp effectiveTime) {
+        this.effectiveTime = effectiveTime;
+    }
+
+    public Timestamp getExpirationTime() {
+        return expirationTime;
+    }
+
+    public void setExpirationTime(Timestamp expirationTime) {
+        this.expirationTime = expirationTime;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getBranchNo() {
+        return branchNo;
+    }
+
+    public void setBranchNo(String branchNo) {
+        this.branchNo = branchNo;
+    }
+}
