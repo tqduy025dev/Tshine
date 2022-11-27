@@ -1,6 +1,5 @@
-package com.tshine.server.apiserver.common.utils;
+package com.tshine.server.apiserver.common.factory;
 
-import com.tshine.server.apiserver.common.factory.PasswordGeneratorFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.UUID;

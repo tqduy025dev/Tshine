@@ -1,6 +1,9 @@
 package com.tshine.server.apiserver.entities.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.tshine.server.apiserver.common.constants.AppConstants;
+import com.tshine.server.apiserver.common.factory.KeyGenarator;
+import com.tshine.server.apiserver.common.utils.TimeUtils;
 import com.tshine.server.apiserver.entities.store.Discount;
 import com.tshine.server.apiserver.entities.system.SystemFile;
 
@@ -23,18 +26,34 @@ public class Product {
     private Timestamp lastUpdated;
     private String createdBy;
     private String updatedBy;
+    private String status;
     private String branchNo;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "discount_id")
     private Discount discount;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private List<SystemFile> images;
 
+    @ManyToMany
+    @JoinTable(
+            name = "product_catygories",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Category> categories;
+
+    public Product() {
+        this.productId = KeyGenarator.getKey();
+        this.createdTime = TimeUtils.getTimestampNow();
+        this.lastUpdated = TimeUtils.getTimestampNow();
+        this.status = AppConstants.STATUS_ACTIVE;
+    }
+
     public String getProductId() {
         return productId;
     }
-
 
     public String getProductCode() {
         return productCode;
@@ -132,15 +151,27 @@ public class Product {
         this.images = images;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
     public String getBranchNo() {
         return branchNo;
     }
 
     public void setBranchNo(String branchNo) {
         this.branchNo = branchNo;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

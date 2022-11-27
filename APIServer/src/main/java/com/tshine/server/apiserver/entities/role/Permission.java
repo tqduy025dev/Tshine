@@ -1,5 +1,8 @@
 package com.tshine.server.apiserver.entities.role;
 
+import com.tshine.server.apiserver.common.constants.AppConstants;
+import com.tshine.server.apiserver.common.factory.KeyGenarator;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -20,6 +23,10 @@ public class Permission {
             })
     private List<Role> roles;
 
+    public Permission() {
+        this.permissionId = KeyGenarator.getKey();
+        this.status = AppConstants.STATUS_ACTIVE;
+    }
 
     public String getPermissionId() {
         return permissionId;

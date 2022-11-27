@@ -1,5 +1,8 @@
 package com.tshine.server.apiserver.entities.system;
 
+import com.tshine.server.apiserver.common.constants.AppConstants;
+import com.tshine.server.apiserver.common.factory.KeyGenarator;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -11,6 +14,11 @@ public class SystemDesk {
     private String qrCode;
     private String deskNum;
     private String branchNo;
+
+    public SystemDesk() {
+        this.id = KeyGenarator.getKey();
+        this.status = AppConstants.STATUS_ACTIVE;
+    }
 
     public String getId() {
         return id;

@@ -1,5 +1,8 @@
 package com.tshine.server.apiserver.entities.system;
 
+import com.tshine.server.apiserver.common.constants.AppConstants;
+import com.tshine.server.apiserver.common.factory.KeyGenarator;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;
@@ -14,6 +17,12 @@ public class SystemFile {
     private Timestamp lastUpdated;
     private String createdBy;
     private String updatedBy;
+    private String status;
+
+    public SystemFile() {
+        this.id = KeyGenarator.getKey();
+        this.status = AppConstants.STATUS_ACTIVE;
+    }
 
     public String getId() {
         return id;
@@ -65,5 +74,13 @@ public class SystemFile {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

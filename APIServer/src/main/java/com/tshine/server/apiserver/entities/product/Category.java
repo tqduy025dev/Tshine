@@ -1,8 +1,12 @@
 package com.tshine.server.apiserver.entities.product;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.tshine.server.apiserver.common.constants.AppConstants;
+import com.tshine.server.apiserver.common.factory.KeyGenarator;
+import com.tshine.server.apiserver.common.utils.TimeUtils;
+
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity(name = "categories")
 public class Category {
@@ -15,11 +19,25 @@ public class Category {
     private Timestamp lastUpdated;
     private String createdBy;
     private String updatedBy;
+    private String status;
+    @ManyToMany(mappedBy = "categories",
+            fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    private List<Product> products;
+
+    public Category() {
+        this.categoryId = KeyGenarator.getKey();
+        this.createdTime = TimeUtils.getTimestampNow();
+        this.lastUpdated = TimeUtils.getTimestampNow();
+        this.status = AppConstants.STATUS_ACTIVE;
+    }
 
     public String getCategoryId() {
         return categoryId;
     }
-
 
     public String getCode() {
         return code;
@@ -75,5 +93,21 @@ public class Category {
 
     public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

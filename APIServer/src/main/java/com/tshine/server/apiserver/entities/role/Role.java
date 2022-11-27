@@ -1,5 +1,8 @@
 package com.tshine.server.apiserver.entities.role;
 
+import com.tshine.server.apiserver.common.constants.AppConstants;
+import com.tshine.server.apiserver.common.factory.KeyGenarator;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,6 +22,11 @@ public class Role {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Permission> permissions;
 
+
+    public Role() {
+        this.roleId = KeyGenarator.getKey();
+        this.status = AppConstants.STATUS_ACTIVE;
+    }
 
     public String getRoleId() {
         return roleId;

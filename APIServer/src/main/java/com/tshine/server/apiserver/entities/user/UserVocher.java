@@ -1,5 +1,7 @@
 package com.tshine.server.apiserver.entities.user;
 
+import com.tshine.server.apiserver.common.constants.AppConstants;
+import com.tshine.server.apiserver.common.utils.TimeUtils;
 import com.tshine.server.apiserver.entities.key.UserVocherKey;
 import com.tshine.server.apiserver.entities.store.Vocher;
 
@@ -26,6 +28,14 @@ public class UserVocher {
     private Timestamp lastUpdated;
     private String createdBy;
     private String updatedBy;
+    private String status;
+
+    public UserVocher() {
+        this.key = new UserVocherKey();
+        this.createdTime = TimeUtils.getTimestampNow();
+        this.lastUpdated = TimeUtils.getTimestampNow();
+        this.status = AppConstants.STATUS_ACTIVE;
+    }
 
     public UserVocherKey getKey() {
         return key;
@@ -89,5 +99,13 @@ public class UserVocher {
 
     public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

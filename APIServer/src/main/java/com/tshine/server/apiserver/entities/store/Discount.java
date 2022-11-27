@@ -1,5 +1,8 @@
 package com.tshine.server.apiserver.entities.store;
 
+import com.tshine.server.apiserver.common.constants.AppConstants;
+import com.tshine.server.apiserver.common.factory.KeyGenarator;
+import com.tshine.server.apiserver.common.utils.TimeUtils;
 import com.tshine.server.apiserver.entities.product.Product;
 
 import javax.persistence.Entity;
@@ -22,9 +25,17 @@ public class Discount {
     private Timestamp lastUpdated;
     private String createdBy;
     private String updatedBy;
+    private String status;
     private String branchNo;
     @OneToMany(mappedBy = "discount")
     private List<Product> products;
+
+    public Discount() {
+        this.discountId = KeyGenarator.getKey();
+        this.createdTime = TimeUtils.getTimestampNow();
+        this.lastUpdated = TimeUtils.getTimestampNow();
+        this.status = AppConstants.STATUS_ACTIVE;
+    }
 
     public String getDiscountId() {
         return discountId;
@@ -124,5 +135,13 @@ public class Discount {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

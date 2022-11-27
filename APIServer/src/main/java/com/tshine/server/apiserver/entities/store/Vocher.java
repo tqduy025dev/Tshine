@@ -1,5 +1,9 @@
 package com.tshine.server.apiserver.entities.store;
 
+import com.tshine.server.apiserver.common.constants.AppConstants;
+import com.tshine.server.apiserver.common.factory.KeyGenarator;
+import com.tshine.server.apiserver.common.utils.TimeUtils;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;
@@ -7,7 +11,7 @@ import java.sql.Timestamp;
 @Entity(name = "vochers")
 public class Vocher {
     @Id
-    private String id;
+    private String vocherId;
     private String title;
     private String description;
     private String type;
@@ -16,6 +20,7 @@ public class Vocher {
     private Double reducedMax;
     private Double billCondition;
     private Timestamp createdTime;
+    private Timestamp lastUpdated;
     private Timestamp effectiveTime;
     private Timestamp expirationTime;
     private String createdBy;
@@ -23,8 +28,15 @@ public class Vocher {
     private String status;
     private String branchNo;
 
-    public String getId() {
-        return id;
+    public Vocher() {
+        this.vocherId = KeyGenarator.getKey();
+        this.createdTime = TimeUtils.getTimestampNow();
+        this.lastUpdated = TimeUtils.getTimestampNow();
+        this.status = AppConstants.STATUS_ACTIVE;
+    }
+
+    public String getVocherId() {
+        return vocherId;
     }
 
     public String getTitle() {
@@ -137,5 +149,13 @@ public class Vocher {
 
     public void setBranchNo(String branchNo) {
         this.branchNo = branchNo;
+    }
+
+    public Timestamp getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Timestamp lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 }

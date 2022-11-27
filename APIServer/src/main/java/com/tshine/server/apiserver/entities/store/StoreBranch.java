@@ -1,5 +1,9 @@
 package com.tshine.server.apiserver.entities.store;
 
+import com.tshine.server.apiserver.common.constants.AppConstants;
+import com.tshine.server.apiserver.common.factory.KeyGenarator;
+import com.tshine.server.apiserver.common.utils.TimeUtils;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;
@@ -16,6 +20,13 @@ public class StoreBranch {
     private String createdBy;
     private String updatedBy;
     private String status;
+
+    public StoreBranch() {
+        this.branchId = KeyGenarator.getKey();
+        this.createdTime = TimeUtils.getTimestampNow();
+        this.lastUpdated = TimeUtils.getTimestampNow();
+        this.status = AppConstants.STATUS_ACTIVE;
+    }
 
     public String getBranchId() {
         return branchId;

@@ -1,8 +1,11 @@
 package com.tshine.server.apiserver.entities.user;
 
 
-import com.tshine.server.apiserver.entities.system.SystemFile;
+import com.tshine.server.apiserver.common.constants.AppConstants;
+import com.tshine.server.apiserver.common.factory.KeyGenarator;
+import com.tshine.server.apiserver.common.utils.TimeUtils;
 import com.tshine.server.apiserver.entities.role.Role;
+import com.tshine.server.apiserver.entities.system.SystemFile;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -40,6 +43,13 @@ public class UserInfo {
     @OneToOne
     @JoinColumn(name = "role_id")
     private Role role;
+
+    public UserInfo() {
+        this.userId = KeyGenarator.getKey();
+        this.createdTime = TimeUtils.getTimestampNow();
+        this.lastUpdated = TimeUtils.getTimestampNow();
+        this.status = AppConstants.STATUS_ACTIVE;
+    }
 
     public String getUserId() {
         return userId;
