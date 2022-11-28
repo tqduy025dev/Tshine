@@ -1,9 +1,9 @@
 package com.tshine.server.common.dto.base;
 
 public class FileResponse {
-    String id;
-    String data;
-    String type;
+    private String id;
+    private String url;
+    private String type;
 
     public String getId() {
         return id;
@@ -13,12 +13,12 @@ public class FileResponse {
         this.id = id;
     }
 
-    public String getData() {
-        return data;
+    public String getUrl() {
+        return url;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getType() {

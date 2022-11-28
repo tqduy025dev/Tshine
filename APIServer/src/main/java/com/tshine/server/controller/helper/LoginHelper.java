@@ -54,11 +54,11 @@ public class LoginHelper {
             Authentication authentication = authenticate(loginRequest.getUsername(), loginRequest.getPassword());
             MyUserDetail myUserDetail = (MyUserDetail) authentication.getPrincipal();
             String token = tokenProvider.generateToken(myUserDetail);
-            result = ResponseResultUtils.getResponseResult(LOGIN_SUCC, SUCC_CODE);
+            result = ResponseResultUtils.getResponseResult(LOGIN_SUCC, CODE_SUCC);
             responseData.setData(new LoginResponse(token));
         }catch (Exception e){
             logger.error("******Login Error getDataLogin()******", e);
-            result = ResponseResultUtils.getResponseResult(LOGIN_FAIL, UNAUTHORIZED_CODE);
+            result = ResponseResultUtils.getResponseResult(LOGIN_FAIL, CODE_UNAUTHORIZED);
         }
         response.setResponse(responseData);
         response.setResult(result);

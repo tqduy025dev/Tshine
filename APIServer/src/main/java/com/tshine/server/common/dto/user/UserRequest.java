@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UserRequest {
     private String firstName;
     private String lastName;
-    private String userName;
+    private String username;
     private String address;
     private String phone;
     private String email;
@@ -78,11 +78,11 @@ public class UserRequest {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

@@ -14,22 +14,22 @@ public class ResponseResultUtils {
         responseResult.setCode(code);
         responseResult.setDesc(description);
         switch (code){
-            case FAIL_CODE:
+            case CODE_FAIL:
                 responseResult.setHttpStatus(404);
                 break;
-            case UNAUTHORIZED_CODE:
+            case CODE_UNAUTHORIZED:
                 responseResult.setHttpStatus(401);
                 break;
-            case BAD_REQUEST_CODE:
+            case CODE_BAD_REQUEST:
                 responseResult.setHttpStatus(400);
                 break;
-            case CONFLICT_CODE:
+            case CODE_CONFLICT:
                 responseResult.setHttpStatus(409);
                 break;
-            case CREATED_CODE:
+            case CODE_CREATED:
                 responseResult.setHttpStatus(201);
                 break;
-            case ACCEPTED_CODE:
+            case CODE_ACCEPTED:
                 responseResult.setHttpStatus(202);
                 break;
             default:

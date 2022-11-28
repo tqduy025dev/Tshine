@@ -1,0 +1,5 @@
+amazonProperties:
+  endpointUrl: https://s3.us-east-2.amazonaws.com
+  accessKey: AKIA2NF3XK6JWUQ2HZ5E
+  secretKey: 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
+  bucketName: my-cloud-duytq
