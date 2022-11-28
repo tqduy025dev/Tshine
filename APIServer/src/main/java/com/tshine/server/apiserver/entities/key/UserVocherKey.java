@@ -1,6 +1,6 @@
 package com.tshine.server.apiserver.entities.key;
 
-import com.tshine.server.apiserver.common.factory.KeyGenarator;
+import com.tshine.server.common.factory.KeyGenarator;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

@@ -1,7 +1,7 @@
 package com.tshine.server.apiserver.entities.bill;
 
-import com.tshine.server.apiserver.common.factory.KeyGenarator;
-import com.tshine.server.apiserver.common.utils.TimeUtils;
+import com.tshine.server.common.factory.KeyGenarator;
+import com.tshine.server.common.utils.TimeUtils;
 import com.tshine.server.apiserver.entities.store.Vocher;
 
 import javax.persistence.*;

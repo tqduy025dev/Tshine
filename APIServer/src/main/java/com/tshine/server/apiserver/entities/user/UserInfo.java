@@ -1,9 +1,9 @@
 package com.tshine.server.apiserver.entities.user;
 
 
-import com.tshine.server.apiserver.common.constants.AppConstants;
-import com.tshine.server.apiserver.common.factory.KeyGenarator;
-import com.tshine.server.apiserver.common.utils.TimeUtils;
+import com.tshine.server.common.constants.AppConstants;
+import com.tshine.server.common.factory.KeyGenarator;
+import com.tshine.server.common.utils.TimeUtils;
 import com.tshine.server.apiserver.entities.role.Role;
 import com.tshine.server.apiserver.entities.system.SystemFile;
 
@@ -19,7 +19,7 @@ public class UserInfo {
     @Column(nullable = false)
     private String lastName;
     private String nick;
-    private String mobile;
+    private String phone;
     private String email;
     @Column(unique = true, nullable = false)
     private String username;
@@ -27,7 +27,7 @@ public class UserInfo {
     private String password;
     @Column(nullable = false)
     private String oldPassword;
-    private String dateOfBirth;
+    private Timestamp dateOfBirth;
     private String gender;
     private String isOnline;
     private String status;
@@ -79,9 +79,6 @@ public class UserInfo {
         this.nick = nick;
     }
 
-    public String getMobile() {
-        return mobile;
-    }
 
     public String getOldPassword() {
         return oldPassword;
@@ -131,9 +128,6 @@ public class UserInfo {
         this.loginCount = loginCount;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
 
     public String getUsername() {
         return username;
@@ -151,11 +145,11 @@ public class UserInfo {
         this.password = password;
     }
 
-    public String getDateOfBirth() {
+    public Timestamp getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Timestamp dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -223,6 +217,14 @@ public class UserInfo {
         this.branchNo = branchNo;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this)
@@ -230,7 +232,7 @@ public class UserInfo {
         if (!(obj instanceof UserInfo))
             return false;
         UserInfo userInfo = (UserInfo) obj;
-        return this.userId.equals(userInfo.getUserId()) || this.username.equals(userInfo.getUsername()) || this.mobile.equals(userInfo.getMobile()) ;
+        return this.userId.equals(userInfo.getUserId()) || this.username.equals(userInfo.getUsername()) || this.phone.equals(userInfo.getPhone()) ;
     }
 
     @Override
@@ -239,8 +241,8 @@ public class UserInfo {
         if(userId != null){
             result = result + userId.hashCode();
         }
-        if(mobile != null){
-            result = result + mobile.hashCode();
+        if(phone != null){
+            result = result + phone.hashCode();
         }
         if(username != null){
             result = result + username.hashCode();

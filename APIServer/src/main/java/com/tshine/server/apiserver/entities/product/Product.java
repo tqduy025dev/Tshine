@@ -1,9 +1,9 @@
 package com.tshine.server.apiserver.entities.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.tshine.server.apiserver.common.constants.AppConstants;
-import com.tshine.server.apiserver.common.factory.KeyGenarator;
-import com.tshine.server.apiserver.common.utils.TimeUtils;
+import com.tshine.server.common.constants.AppConstants;
+import com.tshine.server.common.factory.KeyGenarator;
+import com.tshine.server.common.utils.TimeUtils;
 import com.tshine.server.apiserver.entities.store.Discount;
 import com.tshine.server.apiserver.entities.system.SystemFile;
 

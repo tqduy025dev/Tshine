@@ -1,7 +1,7 @@
 package com.tshine.server.apiserver.entities.role;
 
-import com.tshine.server.apiserver.common.constants.AppConstants;
-import com.tshine.server.apiserver.common.factory.KeyGenarator;
+import com.tshine.server.common.constants.AppConstants;
+import com.tshine.server.common.factory.KeyGenarator;
 
 import javax.persistence.*;
 import java.util.List;

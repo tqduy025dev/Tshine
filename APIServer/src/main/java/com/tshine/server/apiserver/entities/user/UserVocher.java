@@ -1,7 +1,7 @@
 package com.tshine.server.apiserver.entities.user;
 
-import com.tshine.server.apiserver.common.constants.AppConstants;
-import com.tshine.server.apiserver.common.utils.TimeUtils;
+import com.tshine.server.common.constants.AppConstants;
+import com.tshine.server.common.utils.TimeUtils;
 import com.tshine.server.apiserver.entities.key.UserVocherKey;
 import com.tshine.server.apiserver.entities.store.Vocher;
 
