@@ -2,7 +2,7 @@ package com.tshine.server.controller.user;
 
 import com.tshine.server.common.dto.base.Response;
 import com.tshine.server.common.dto.user.UserRequest;
-import com.tshine.server.controller.helper.UserHelper;
+import com.tshine.server.helper.UserHelper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ public class UserController {
         return ResponseEntity.status(status).body(response);
     }
 
-    @GetMapping("/authorize-user")
+    @GetMapping("/authen-user")
     public ResponseEntity<?> getEmployeeFromJwt(Authentication authentication) {
         Response response = helper.authorizeUser(authentication);
         int status = response.getResult().getHttpStatus();

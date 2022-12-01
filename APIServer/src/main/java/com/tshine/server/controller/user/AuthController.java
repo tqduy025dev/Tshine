@@ -3,7 +3,7 @@ package com.tshine.server.controller.user;
 import com.tshine.server.apiserver.service.UserService;
 import com.tshine.server.common.dto.authorize.LoginRequest;
 import com.tshine.server.common.dto.base.Response;
-import com.tshine.server.controller.helper.LoginHelper;
+import com.tshine.server.helper.LoginHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

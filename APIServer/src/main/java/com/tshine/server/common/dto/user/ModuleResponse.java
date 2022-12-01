@@ -1,23 +1,23 @@
 package com.tshine.server.common.dto.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
-public class RoleResponse {
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class ModuleResponse {
     private String id;
     private String code;
     private String name;
     private String description;
     private String status;
-    private List<PermissionResponse> permissions;
+    private String icon;
+    @JsonBackReference
+    private ModuleResponse pModule;
+    @JsonManagedReference
     private List<ModuleResponse> modules;
-
-    public List<PermissionResponse> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(List<PermissionResponse> permissions) {
-        this.permissions = permissions;
-    }
 
     public String getId() {
         return id;
@@ -59,11 +59,27 @@ public class RoleResponse {
         this.status = status;
     }
 
+    public ModuleResponse getpModule() {
+        return pModule;
+    }
+
+    public void setpModule(ModuleResponse pModule) {
+        this.pModule = pModule;
+    }
+
     public List<ModuleResponse> getModules() {
         return modules;
     }
 
     public void setModules(List<ModuleResponse> modules) {
         this.modules = modules;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }

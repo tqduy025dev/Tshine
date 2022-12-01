@@ -1,10 +1,12 @@
 package com.tshine.server.apiserver.entities.role;
 
+import com.tshine.server.apiserver.entities.system.SystemModule;
 import com.tshine.server.common.constants.AppConstants;
 import com.tshine.server.common.factory.KeyGenarator;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "roles")
 public class Role {
@@ -22,6 +24,12 @@ public class Role {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Permission> permissions;
 
+    @ManyToMany
+    @JoinTable(
+            name = "role_modules",
+            joinColumns = @JoinColumn(name = "module_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<SystemModule> modules;
 
     public Role() {
         this.roleId = KeyGenarator.getKey();
@@ -30,10 +38,6 @@ public class Role {
 
     public String getRoleId() {
         return roleId;
-    }
-
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
     }
 
     public String getCode() {
@@ -66,6 +70,14 @@ public class Role {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<SystemModule> getModules() {
+        return modules;
+    }
+
+    public void setModules(List<SystemModule> modules) {
+        this.modules = modules;
     }
 
     public List<Permission> getPermissions() {

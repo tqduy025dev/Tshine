@@ -7,6 +7,7 @@ public class RoleRequest {
     private String name;
     private String description;
     private List<String> permissions;
+    private List<String> modules;
 
     public List<String> getPermissions() {
         return permissions;
@@ -38,5 +39,13 @@ public class RoleRequest {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<String> getModules() {
+        return modules;
+    }
+
+    public void setModules(List<String> modules) {
+        this.modules = modules;
     }
 }

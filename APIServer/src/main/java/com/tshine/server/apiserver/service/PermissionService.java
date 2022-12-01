@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PermissionService {
     Permission createPermission(PermissionRequest permissionRequest);
-    Page<Permission> findPermissionByCode(List<String> codes, Pageable pageable);
-    Permission findPermissionByCode(String codes);
+    Page<Permission> findPermissionByCodes(List<String> codes, Pageable pageable);
+    Permission findPermissionByCodes(String code);
     Page<Permission> findAllPermission(Pageable pageable);
 }

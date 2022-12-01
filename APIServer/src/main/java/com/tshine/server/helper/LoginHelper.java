@@ -1,4 +1,4 @@
-package com.tshine.server.controller.helper;
+package com.tshine.server.helper;
 
 
 import com.tshine.server.apiserver.authority.JwtTokenProvider;

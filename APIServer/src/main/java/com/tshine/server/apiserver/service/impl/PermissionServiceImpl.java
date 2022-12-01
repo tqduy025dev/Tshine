@@ -27,13 +27,13 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public Page<Permission> findPermissionByCode(List<String> codes, Pageable pageable) {
+    public Page<Permission> findPermissionByCodes(List<String> codes, Pageable pageable) {
         return permissionRepositories.findPermissionsByCodeIn(codes,pageable);
     }
 
     @Override
-    public Permission findPermissionByCode(String codes) {
-        return permissionRepositories.findPermissionsByCode(codes);
+    public Permission findPermissionByCodes(String code) {
+        return permissionRepositories.findPermissionsByCode(code);
     }
 
     @Override

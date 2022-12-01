@@ -1,8 +1,10 @@
-package com.tshine.server.controller.helper;
+package com.tshine.server.helper;
 
 
 import com.tshine.server.apiserver.entities.role.Permission;
 import com.tshine.server.apiserver.entities.role.Role;
+import com.tshine.server.apiserver.entities.system.SystemModule;
+import com.tshine.server.apiserver.service.ModuleService;
 import com.tshine.server.apiserver.service.PermissionService;
 import com.tshine.server.apiserver.service.RoleService;
 import com.tshine.server.common.dto.base.Response;
@@ -35,12 +37,14 @@ public class PermissionHelper {
 
     private final RoleService roleService;
     private final PermissionService permissionService;
+    private final ModuleService moduleService;
 
     private final Response response = new Response();
 
-    public PermissionHelper(RoleService roleService, PermissionService permissionService) {
+    public PermissionHelper(RoleService roleService, PermissionService permissionService, ModuleService moduleService) {
         this.roleService = roleService;
         this.permissionService = permissionService;
+        this.moduleService = moduleService;
     }
 
 
@@ -49,12 +53,15 @@ public class PermissionHelper {
         ResponseResult responseResult = null;
         try {
             Pageable pageable = Pageable.unpaged();
-            Page<Permission> permissions = permissionService.findPermissionByCode(roleRequest.getPermissions(), pageable);
-            if(!CollectionUtils.isEmpty(permissions.getContent())){
-                Role result = roleService.createRole(roleRequest);
+            Page<Permission> permissions = permissionService.findPermissionByCodes(roleRequest.getPermissions(), pageable);
+            Page<SystemModule> modules = moduleService.findModuleByCodes(roleRequest.getModules(), pageable);
+            if(!CollectionUtils.isEmpty(permissions.getContent()) && !CollectionUtils.isEmpty(modules.getContent())){
+                Role result = roleService.createRole(roleRequest, permissions.getContent(), modules.getContent());
                 Object roleResponse = AppUtils.converToDTO(result, RoleResponse.class);
                 responseData.setData(roleResponse);
                 responseResult = ResponseResultUtils.getResponseResult(CREATE_SUCC, CODE_SUCC);
+            }else{
+                responseResult = ResponseResultUtils.getResponseResult(CREATE_FAIL, CODE_FAIL);
             }
 
         }catch (Exception e){

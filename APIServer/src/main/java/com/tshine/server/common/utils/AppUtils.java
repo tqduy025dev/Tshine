@@ -31,36 +31,4 @@ public class AppUtils {
         return modelMapper.map(object, clazz);
     }
 
-
-    public static RoleResponse getRoleResponse(Role role){
-        RoleResponse roleResponse = new RoleResponse();
-        List<PermissionResponse> permissionResponses = new ArrayList<>();
-        roleResponse.setId(role.getRoleId());
-        roleResponse.setCode(role.getCode());
-        roleResponse.setName(role.getName());
-        roleResponse.setStatus(role.getStatus());
-        roleResponse.setDescription(role.getDescription());
-        role.getPermissions().forEach(i -> {
-            PermissionResponse permissionResponse = new PermissionResponse();
-            permissionResponse.setId(i.getPermissionId());
-            permissionResponse.setName(i.getName());
-            permissionResponse.setCode(i.getCode());
-            permissionResponse.setDescription(i.getDescription());
-            permissionResponse.setStatus(i.getStatus());
-            permissionResponses.add(permissionResponse);
-        });
-        roleResponse.setPermissions(permissionResponses);
-        return roleResponse;
-    }
-
-
-    public static PermissionResponse getPermissionResponse(Permission permision){
-        PermissionResponse permissionResponse = new PermissionResponse();
-        permissionResponse.setStatus(permision.getStatus());
-        permissionResponse.setName(permision.getName());
-        permissionResponse.setCode(permision.getCode());
-        permissionResponse.setDescription(permision.getDescription());
-        permissionResponse.setId(permision.getPermissionId());
-        return permissionResponse;
-    }
 }
