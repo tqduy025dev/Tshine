@@ -1,7 +1,9 @@
 package com.tshine.server.helper;
 
 import com.tshine.server.apiserver.authority.MyUserDetail;
+import com.tshine.server.apiserver.entities.role.Role;
 import com.tshine.server.apiserver.entities.user.UserInfo;
+import com.tshine.server.apiserver.service.RoleService;
 import com.tshine.server.apiserver.service.UserService;
 import com.tshine.server.common.dto.base.Response;
 import com.tshine.server.common.dto.base.ResponseData;
@@ -28,17 +30,20 @@ public class UserHelper {
     private final Logger logger = LoggerFactory.getLogger(UserHelper.class);
 
     private final UserService userService;
+    private final RoleService roleService;
     private final Response response = new Response();
 
-    public UserHelper(UserService userService) {
+    public UserHelper(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
-    public Response createEmployee(UserRequest userRequest){
+    public Response createUser(UserRequest userRequest){
         ResponseResult responseResult;
         ResponseData responseData = new ResponseData();
         try {
-            UserInfo result = userService.createUser(userRequest);
+            Role role = roleService.findRoleById(userRequest.getRole());
+            UserInfo result = userService.createUser(userRequest, role);
             responseResult = ResponseResultUtils.getResponseResult(CREATE_SUCC, CODE_SUCC);
             Object userResponse = AppUtils.converToDTO(result, UserResponse.class);
             responseData.setData(userResponse);
@@ -61,11 +66,11 @@ public class UserHelper {
                 UserInfo userInfo = myUserDetail.getUserInfo();
                 Object employeeResponse = AppUtils.converToDTO(userInfo, UserResponse.class);
                 responseData.setData(employeeResponse);
-                responseResult = ResponseResultUtils.getResponseResult(SUCC_KEY, CODE_SUCC);
+                responseResult = ResponseResultUtils.getResponseResult(KEY_SUCC, CODE_SUCC);
             }
         }catch (Exception e){
             logger.error("******UserHelper Error authorizeUser()******", e);
-            responseResult = ResponseResultUtils.getResponseResult(FAIL_KEY, CODE_UNAUTHORIZED);
+            responseResult = ResponseResultUtils.getResponseResult(KEY_FAIL, CODE_UNAUTHORIZED);
         }
         response.setResult(responseResult);
         response.setResponse(responseData);
@@ -80,7 +85,7 @@ public class UserHelper {
             Object userResponse = AppUtils.converToDTO(result.getContent(), UserResponse[].class);
             PagingUtils.setDataResponse(responseData, result);
             responseData.setData(userResponse);
-            responseResult = ResponseResultUtils.getResponseResult(SUCC_KEY, CODE_SUCC);
+            responseResult = ResponseResultUtils.getResponseResult(KEY_SUCC, CODE_SUCC);
         }catch (Exception e){
             logger.error("******UserHelper Error findEmployee()******", e);
             responseResult = ResponseResultUtils.getResponseResult(CREATE_FAIL, CODE_FAIL);

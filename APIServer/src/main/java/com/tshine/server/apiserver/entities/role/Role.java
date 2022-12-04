@@ -3,6 +3,8 @@ package com.tshine.server.apiserver.entities.role;
 import com.tshine.server.apiserver.entities.system.SystemModule;
 import com.tshine.server.common.constants.AppConstants;
 import com.tshine.server.common.factory.KeyGenarator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,6 +20,7 @@ public class Role {
     private String description;
     private String status;
     @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name = "role_permissions",
             joinColumns = @JoinColumn(name = "permission_id"),
@@ -25,6 +28,7 @@ public class Role {
     private List<Permission> permissions;
 
     @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name = "role_modules",
             joinColumns = @JoinColumn(name = "module_id"),

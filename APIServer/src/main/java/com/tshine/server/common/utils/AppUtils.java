@@ -9,10 +9,12 @@ import com.tshine.server.common.dto.user.RoleResponse;
 import com.tshine.server.apiserver.entities.role.Permission;
 import com.tshine.server.apiserver.entities.role.Role;
 import com.tshine.server.apiserver.entities.user.UserInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class AppUtils {
     public static String getCurrentUser(){
@@ -31,4 +33,13 @@ public class AppUtils {
         return modelMapper.map(object, clazz);
     }
 
+    public static void removeValueEmptyToMap(Map<String, String> map) {
+        for (String key : map.keySet()) {
+            String SubSpace = map.get(key).trim().replaceAll("\\s+"," ");
+            map.put(key, SubSpace);
+            if(StringUtils.isEmpty(map.get(key)) || map.get(key).trim().isEmpty()){
+                map.remove(key);
+            }
+        }
+    }
 }

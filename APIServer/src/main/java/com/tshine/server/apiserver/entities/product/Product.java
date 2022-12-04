@@ -16,6 +16,7 @@ import java.util.List;
 public class Product {
     @Id
     private String productId;
+    @Column(unique = true)
     private String productCode;
     private String productName;
     private String productDes;
@@ -49,6 +50,7 @@ public class Product {
         this.createdTime = TimeUtils.getTimestampNow();
         this.lastUpdated = TimeUtils.getTimestampNow();
         this.status = AppConstants.STATUS_ACTIVE;
+        this.productSold = 0;
     }
 
     public String getProductId() {

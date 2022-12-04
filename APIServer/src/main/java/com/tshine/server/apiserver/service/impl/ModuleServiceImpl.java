@@ -2,33 +2,34 @@ package com.tshine.server.apiserver.service.impl;
 
 import com.tshine.server.apiserver.entities.system.SystemModule;
 import com.tshine.server.apiserver.repository.ModuleRepositories;
-import com.tshine.server.apiserver.service.AmazonClient;
+import com.tshine.server.apiserver.service.AmazonClientService;
 import com.tshine.server.apiserver.service.ModuleService;
 import com.tshine.server.common.dto.user.ModuleRequest;
 import com.tshine.server.common.utils.AppUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class ModuleServiceImpl implements ModuleService {
     private final ModuleRepositories moduleRepositories;
-    private final AmazonClient amazonClient;
+    private final AmazonClientService amazonClientService;
 
-    public ModuleServiceImpl(ModuleRepositories moduleRepositories, AmazonClient amazonClient) {
+    public ModuleServiceImpl(ModuleRepositories moduleRepositories, AmazonClientService amazonClientService) {
         this.moduleRepositories = moduleRepositories;
-        this.amazonClient = amazonClient;
+        this.amazonClientService = amazonClientService;
     }
 
 
     @Override
     public SystemModule createModule(ModuleRequest moduleRequest) throws Exception {
-        String url = amazonClient.uploadFileToS3(moduleRequest.getIcon());
+        String url = amazonClientService.uploadFileToS3(moduleRequest.getIcon());
         SystemModule systemModule = (SystemModule) AppUtils.converToEntities(moduleRequest, SystemModule.class);
-        if(Objects.nonNull(moduleRequest.getpModule())){
+        systemModule.setpModule(null);
+        if(StringUtils.isNotEmpty(moduleRequest.getpModule())){
             SystemModule pModule = moduleRepositories.findById(moduleRequest.getpModule()).orElseThrow(Exception::new);
             systemModule.setpModule(pModule);
         }

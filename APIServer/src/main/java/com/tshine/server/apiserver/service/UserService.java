@@ -1,5 +1,6 @@
 package com.tshine.server.apiserver.service;
 
+import com.tshine.server.apiserver.entities.role.Role;
 import com.tshine.server.apiserver.entities.user.UserInfo;
 import com.tshine.server.common.dto.user.UserRequest;
 import org.springframework.data.domain.Page;
@@ -9,7 +10,7 @@ import java.io.IOException;
 import java.util.Map;
 
 public interface UserService {
-    UserInfo createUser(UserRequest request) throws IOException;
+    UserInfo createUser(UserRequest request, Role role) throws IOException;
     UserInfo findUserByUserName(String username);
     Page<UserInfo> findUser(Map<String,String> map, Pageable pageable);
 }

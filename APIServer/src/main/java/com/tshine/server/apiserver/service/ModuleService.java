@@ -5,7 +5,6 @@ import com.tshine.server.common.dto.user.ModuleRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface ModuleService {

@@ -12,6 +12,7 @@ public class UserRequest {
     private String gender;
     private String dateOfBirth;
     private MultipartFile image;
+    private String role;
 
     public MultipartFile getImage() {
         return image;
@@ -84,5 +85,13 @@ public class UserRequest {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

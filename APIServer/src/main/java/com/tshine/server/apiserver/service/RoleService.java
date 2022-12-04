@@ -12,4 +12,5 @@ import java.util.List;
 public interface RoleService {
     Role createRole(RoleRequest roleRequest, List<Permission> permissions, List<SystemModule> modules);
     Page<Role> findAllRole(Pageable pageable);
+    Role findRoleById(String id);
 }

@@ -22,7 +22,7 @@ public class UserController {
 
     @PostMapping("/fixed-user")
     public ResponseEntity<?> createEmployee(@ModelAttribute UserRequest userRequest) {
-        Response response = helper.createEmployee(userRequest);
+        Response response = helper.createUser(userRequest);
         int status = response.getResult().getHttpStatus();
         return ResponseEntity.status(status).body(response);
     }

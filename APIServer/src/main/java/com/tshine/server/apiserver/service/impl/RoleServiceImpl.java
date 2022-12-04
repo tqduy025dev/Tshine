@@ -33,4 +33,9 @@ public class RoleServiceImpl implements RoleService {
     public Page<Role> findAllRole(Pageable pageable) {
         return roleRepositories.findAll(pageable);
     }
+
+    @Override
+    public Role findRoleById(String id) {
+        return roleRepositories.findById(id).orElse(null);
+    }
 }

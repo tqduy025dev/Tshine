@@ -16,6 +16,7 @@ public class UserResponse {
     private String createTime;
     private String status;
     private FileResponse image;
+    private RoleResponse role;
 
     public String getId() {
         return id;
@@ -111,5 +112,13 @@ public class UserResponse {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public RoleResponse getRole() {
+        return role;
+    }
+
+    public void setRole(RoleResponse role) {
+        this.role = role;
     }
 }

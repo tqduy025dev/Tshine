@@ -7,7 +7,8 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.tshine.server.apiserver.service.AmazonClient;
+import com.tshine.server.apiserver.entities.system.SystemFile;
+import com.tshine.server.apiserver.service.AmazonClientService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,10 +17,12 @@ import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Service
-public class AmazonClientImpl implements AmazonClient {
+public class AmazonClientServiceImpl implements AmazonClientService {
     private AmazonS3 s3client;
 
     @Value("${amazonProperties.endpointUrl}")
@@ -47,6 +50,19 @@ public class AmazonClientImpl implements AmazonClient {
         this.uploadFile(fileName, file);
         file.deleteOnExit();
         return s3client.getUrl(bucketName,fileName).toString();
+    }
+
+    @Override
+    public List<SystemFile> uploadFileToS3(MultipartFile[] multipartFiles) throws IOException {
+        List<SystemFile> systemFiles = new ArrayList<>();
+        for (MultipartFile multipartFile : multipartFiles){
+            String url = this.uploadFileToS3(multipartFile);
+            SystemFile systemFile = new SystemFile();
+            systemFile.setUrl(url);
+            systemFile.setType(multipartFile.getContentType());
+            systemFiles.add(systemFile);
+        }
+        return systemFiles;
     }
 
 
