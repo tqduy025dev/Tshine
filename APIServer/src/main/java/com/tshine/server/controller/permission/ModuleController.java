@@ -21,17 +21,18 @@ public class ModuleController {
 
     @GetMapping("/module")
     public ResponseEntity<?> findModule(@RequestParam Map<String, String> map,
-                                      @RequestParam(defaultValue = "0") Integer pageNo,
-                                      @RequestParam(defaultValue = "20") Integer pageSize){
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
+                                        @RequestParam(defaultValue = "true") boolean isPaging,
+                                        @RequestParam(defaultValue = "0") Integer pageNo,
+                                        @RequestParam(defaultValue = "20") Integer pageSize) {
+        Pageable pageable = isPaging ? PageRequest.of(pageNo, pageSize) : Pageable.unpaged();
 
-        Response response = helper.findAllModule(pageable);
+        Response response = helper.findModule(map, pageable, isPaging);
         int status = response.getResult().getHttpStatus();
         return ResponseEntity.status(status).body(response);
     }
 
     @PostMapping("/fixed-module")
-    public ResponseEntity<?> createRole(@ModelAttribute ModuleRequest moduleRequest){
+    public ResponseEntity<?> createRole(@ModelAttribute ModuleRequest moduleRequest) {
         Response response = helper.createModule(moduleRequest);
         int status = response.getResult().getHttpStatus();
         return ResponseEntity.status(status).body(response);

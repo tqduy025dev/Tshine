@@ -6,6 +6,7 @@ import com.tshine.server.apiserver.entities.store.Discount;
 import com.tshine.server.apiserver.service.CategoryService;
 import com.tshine.server.apiserver.service.DiscountService;
 import com.tshine.server.apiserver.service.ProductService;
+import com.tshine.server.common.dto.base.BaseData;
 import com.tshine.server.common.dto.base.Response;
 import com.tshine.server.common.dto.base.ResponseData;
 import com.tshine.server.common.dto.base.ResponseResult;
@@ -24,8 +25,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-import static com.tshine.server.common.constants.AppConstants.CODE_FAIL;
-import static com.tshine.server.common.constants.AppConstants.CODE_SUCC;
+import static com.tshine.server.common.constants.AppConstants.FAIL_CODE;
+import static com.tshine.server.common.constants.AppConstants.SUCC_CODE;
 import static com.tshine.server.common.constants.MessageConstants.*;
 
 @Service
@@ -58,11 +59,11 @@ public class ProductHelper {
             }
             Product product = productService.createProduct(productRequest, categories, discount);
             Object result = AppUtils.converToDTO(product, ProductResponse.class);
-            responseResult = ResponseResultUtils.getResponseResult(CREATE_SUCC, CODE_SUCC);
+            responseResult = ResponseResultUtils.getResponseResult(CREATE_SUCC, SUCC_CODE);
             responseData.setData(result);
         }catch (Exception e){
             logger.error("******UserHelper Error createEmployee()******", e);
-            responseResult = ResponseResultUtils.getResponseResult(CREATE_FAIL, CODE_FAIL);
+            responseResult = ResponseResultUtils.getResponseResult(CREATE_FAIL, FAIL_CODE);
             responseData = null;
         }
         response.setResponse(responseData);
@@ -82,12 +83,12 @@ public class ProductHelper {
             }
 
             Object result = AppUtils.converToDTO(products.getContent(), ProductResponse[].class);
-            responseResult = ResponseResultUtils.getResponseResult(KEY_SUCC, CODE_SUCC);
+            responseResult = ResponseResultUtils.getResponseResult(SUCC_KEY, SUCC_CODE);
             responseData.setData(result);
             PagingUtils.setDataResponse(responseData, products);
         }catch (Exception e){
             logger.error("******UserHelper Error createEmployee()******", e);
-            responseResult = ResponseResultUtils.getResponseResult(KEY_FAIL, CODE_FAIL);
+            responseResult = ResponseResultUtils.getResponseResult(FAIL_KEY, FAIL_CODE);
             responseData = null;
         }
         response.setResponse(responseData);

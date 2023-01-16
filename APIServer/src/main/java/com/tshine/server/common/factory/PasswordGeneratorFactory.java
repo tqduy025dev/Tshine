@@ -95,7 +95,7 @@ public final class PasswordGeneratorFactory {
         /**
          * Get an object to use.
          *
-         * @return the {@link gr.idrymavmela.business.lib.PasswordGenerator}
+         * @return the @link gr.idrymavmela.business.libPasswordGenerator
          * object.
          */
         public PasswordGeneratorFactory build() {

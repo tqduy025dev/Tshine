@@ -38,8 +38,8 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
-    public Page<SystemModule> findModuleByCodes(List<String> codes, Pageable pageable) {
-        return moduleRepositories.findSystemModulesByCodeIn(codes, pageable);
+    public List<SystemModule> findModuleByCodes(List<String> codes) {
+        return moduleRepositories.findSystemModulesByCodeIn(codes);
     }
 
     @Override

@@ -5,7 +5,8 @@ import com.tshine.server.apiserver.service.ModuleService;
 import com.tshine.server.common.dto.base.Response;
 import com.tshine.server.common.dto.base.ResponseData;
 import com.tshine.server.common.dto.base.ResponseResult;
-import com.tshine.server.common.dto.user.*;
+import com.tshine.server.common.dto.user.ModuleRequest;
+import com.tshine.server.common.dto.user.ModuleResponse;
 import com.tshine.server.common.utils.AppUtils;
 import com.tshine.server.common.utils.PagingUtils;
 import com.tshine.server.common.utils.ResponseResultUtils;
@@ -15,8 +16,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import static com.tshine.server.common.constants.AppConstants.CODE_FAIL;
-import static com.tshine.server.common.constants.AppConstants.CODE_SUCC;
+import java.util.Map;
+
+import static com.tshine.server.common.constants.AppConstants.FAIL_CODE;
+import static com.tshine.server.common.constants.AppConstants.SUCC_CODE;
 import static com.tshine.server.common.constants.MessageConstants.*;
 
 @Service
@@ -38,10 +41,10 @@ public class ModuleHelper {
             SystemModule result = moduleService.createModule(moduleRequest);
             Object moduleResponse = AppUtils.converToDTO(result, ModuleResponse.class);
             responseData.setData(moduleResponse);
-            responseResult = ResponseResultUtils.getResponseResult(CREATE_SUCC, CODE_SUCC);
+            responseResult = ResponseResultUtils.getResponseResult(CREATE_SUCC, SUCC_CODE);
         }catch (Exception e){
             logger.error("****************ModuleHelper ERROR createModule()***************", e);
-            responseResult = ResponseResultUtils.getResponseResult(CREATE_FAIL, CODE_FAIL);
+            responseResult = ResponseResultUtils.getResponseResult(CREATE_FAIL, FAIL_CODE);
             responseData = null;
         }
         response.setResponse(responseData);
@@ -50,18 +53,20 @@ public class ModuleHelper {
     }
 
 
-    public Response findAllModule(Pageable pageable) {
+    public Response findModule(Map<String,String> map, Pageable pageable, boolean isPaging) {
         ResponseData responseData = new ResponseData();
         ResponseResult responseResult;
         try {
             Page<SystemModule> modules = moduleService.findAllModule(pageable);
             Object moduleResponse = AppUtils.converToDTO(modules.getContent(), ModuleResponse[].class);
-            PagingUtils.setDataResponse(responseData, modules);
             responseData.setData(moduleResponse);
-            responseResult = ResponseResultUtils.getResponseResult(KEY_SUCC, CODE_SUCC);
+            responseResult = ResponseResultUtils.getResponseResult(SUCC_KEY, SUCC_CODE);
+            if(isPaging){
+                PagingUtils.setDataResponse(responseData, modules);
+            }
         }catch (Exception e){
             logger.error("****************ModuleHelper ERROR createModule()***************", e);
-            responseResult = ResponseResultUtils.getResponseResult(KEY_FAIL, CODE_FAIL);
+            responseResult = ResponseResultUtils.getResponseResult(FAIL_KEY, FAIL_CODE);
             responseData = null;
         }
         response.setResponse(responseData);

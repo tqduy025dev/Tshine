@@ -1,8 +1,6 @@
 package com.tshine.server.apiserver.security;
 
 import com.tshine.server.apiserver.authority.JwtAuthFilter;
-import com.tshine.server.common.converter.StringToTimestampConverter;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

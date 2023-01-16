@@ -12,7 +12,7 @@ public class SystemDesk {
     private String id;
     private String status;
     private String qrCode;
-    private String deskNum;
+    private String deskCode;
     private String branchNo;
 
     public SystemDesk() {
@@ -40,12 +40,12 @@ public class SystemDesk {
         this.qrCode = qrCode;
     }
 
-    public String getDeskNum() {
-        return deskNum;
+    public String getDeskCode() {
+        return deskCode;
     }
 
-    public void setDeskNum(String deskNum) {
-        this.deskNum = deskNum;
+    public void setDeskCode(String deskNum) {
+        this.deskCode = deskNum;
     }
 
 

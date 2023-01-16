@@ -15,15 +15,12 @@ public class SystemFile {
     private String url;
     private String type;
     private Timestamp createdTime;
-    private Timestamp lastUpdated;
     private String createdBy;
-    private String updatedBy;
     private String status;
 
     public SystemFile() {
         this.id = KeyGenarator.getKey();
         this.createdTime = TimeUtils.getTimestampNow();
-        this.lastUpdated = TimeUtils.getTimestampNow();
         this.status = AppConstants.STATUS_ACTIVE;
     }
 
@@ -47,28 +44,12 @@ public class SystemFile {
         this.createdTime = createdTime;
     }
 
-    public Timestamp getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(Timestamp lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
-
     public String getCreatedBy() {
         return createdBy;
     }
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
-    }
-
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
     }
 
     public String getType() {

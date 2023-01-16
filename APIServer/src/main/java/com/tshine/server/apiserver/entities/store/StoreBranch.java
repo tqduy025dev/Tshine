@@ -3,6 +3,7 @@ package com.tshine.server.apiserver.entities.store;
 import com.tshine.server.common.constants.AppConstants;
 import com.tshine.server.common.factory.KeyGenarator;
 import com.tshine.server.common.utils.TimeUtils;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,6 +17,7 @@ public class StoreBranch {
     private String hotline;
     private String email;
     private Timestamp createdTime;
+    @UpdateTimestamp
     private Timestamp lastUpdated;
     private String createdBy;
     private String updatedBy;
@@ -24,7 +26,6 @@ public class StoreBranch {
     public StoreBranch() {
         this.branchId = KeyGenarator.getKey();
         this.createdTime = TimeUtils.getTimestampNow();
-        this.lastUpdated = TimeUtils.getTimestampNow();
         this.status = AppConstants.STATUS_ACTIVE;
     }
 

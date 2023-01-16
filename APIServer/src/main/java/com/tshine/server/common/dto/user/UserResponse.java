@@ -1,7 +1,7 @@
 package com.tshine.server.common.dto.user;
 
 
-import com.tshine.server.common.dto.base.FileResponse;
+import com.tshine.server.common.dto.system.FileResponse;
 
 public class UserResponse {
     private String id;

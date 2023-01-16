@@ -3,6 +3,7 @@ package com.tshine.server.apiserver.entities.store;
 import com.tshine.server.common.constants.AppConstants;
 import com.tshine.server.common.factory.KeyGenarator;
 import com.tshine.server.common.utils.TimeUtils;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ public class Vocher {
     private Double reducedMax;
     private Double billCondition;
     private Timestamp createdTime;
+    @UpdateTimestamp
     private Timestamp lastUpdated;
     private Timestamp effectiveTime;
     private Timestamp expirationTime;
@@ -31,7 +33,6 @@ public class Vocher {
     public Vocher() {
         this.vocherId = KeyGenarator.getKey();
         this.createdTime = TimeUtils.getTimestampNow();
-        this.lastUpdated = TimeUtils.getTimestampNow();
         this.status = AppConstants.STATUS_ACTIVE;
     }
 

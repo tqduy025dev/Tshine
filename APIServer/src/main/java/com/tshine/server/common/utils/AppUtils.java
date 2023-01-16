@@ -1,24 +1,21 @@
 package com.tshine.server.common.utils;
 
 import com.tshine.server.apiserver.authority.JwtTokenProvider;
+import com.tshine.server.apiserver.entities.user.UserInfo;
 import com.tshine.server.common.converter.StringToTimestampConverter;
 import com.tshine.server.common.converter.TimestampToStringConverter;
-import com.tshine.server.common.dto.user.UserResponse;
-import com.tshine.server.common.dto.user.PermissionResponse;
-import com.tshine.server.common.dto.user.RoleResponse;
-import com.tshine.server.apiserver.entities.role.Permission;
-import com.tshine.server.apiserver.entities.role.Role;
-import com.tshine.server.apiserver.entities.user.UserInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class AppUtils {
-    public static String getCurrentUser(){
+    public static String getCurrentUserId(){
         return JwtTokenProvider.getInstance().getUserIdFromAuth();
+    }
+
+    public static UserInfo getCurrentUser(){
+        return JwtTokenProvider.getInstance().getUserFromAuth();
     }
 
     public static Object converToDTO(Object object, Class<?> clazz) {

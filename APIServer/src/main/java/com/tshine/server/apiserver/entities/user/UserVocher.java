@@ -1,9 +1,10 @@
 package com.tshine.server.apiserver.entities.user;
 
-import com.tshine.server.common.constants.AppConstants;
-import com.tshine.server.common.utils.TimeUtils;
 import com.tshine.server.apiserver.entities.key.UserVocherKey;
 import com.tshine.server.apiserver.entities.store.Vocher;
+import com.tshine.server.common.constants.AppConstants;
+import com.tshine.server.common.utils.TimeUtils;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -25,6 +26,7 @@ public class UserVocher {
     private Vocher vocher;
 
     private Timestamp createdTime;
+    @UpdateTimestamp
     private Timestamp lastUpdated;
     private String createdBy;
     private String updatedBy;
@@ -33,7 +35,6 @@ public class UserVocher {
     public UserVocher() {
         this.key = new UserVocherKey();
         this.createdTime = TimeUtils.getTimestampNow();
-        this.lastUpdated = TimeUtils.getTimestampNow();
         this.status = AppConstants.STATUS_ACTIVE;
     }
 

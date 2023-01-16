@@ -1,9 +1,10 @@
 package com.tshine.server.apiserver.entities.store;
 
+import com.tshine.server.apiserver.entities.product.Product;
 import com.tshine.server.common.constants.AppConstants;
 import com.tshine.server.common.factory.KeyGenarator;
 import com.tshine.server.common.utils.TimeUtils;
-import com.tshine.server.apiserver.entities.product.Product;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,6 +23,7 @@ public class Discount {
     private Double reducedPrice;
     private Double reducedRate;
     private Timestamp createdTime;
+    @UpdateTimestamp
     private Timestamp lastUpdated;
     private String createdBy;
     private String updatedBy;
@@ -33,7 +35,6 @@ public class Discount {
     public Discount() {
         this.discountId = KeyGenarator.getKey();
         this.createdTime = TimeUtils.getTimestampNow();
-        this.lastUpdated = TimeUtils.getTimestampNow();
         this.status = AppConstants.STATUS_ACTIVE;
     }
 

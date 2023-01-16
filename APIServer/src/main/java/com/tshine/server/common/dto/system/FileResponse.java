@@ -1,4 +1,4 @@
-package com.tshine.server.common.dto.base;
+package com.tshine.server.common.dto.system;
 
 public class FileResponse {
     private String id;

@@ -18,7 +18,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import static com.tshine.server.common.constants.AppConstants.*;
+import static com.tshine.server.common.constants.AppConstants.CODE_UNAUTHORIZED;
+import static com.tshine.server.common.constants.AppConstants.SUCC_CODE;
 import static com.tshine.server.common.constants.MessageConstants.LOGIN_FAIL;
 import static com.tshine.server.common.constants.MessageConstants.LOGIN_SUCC;
 
@@ -54,7 +55,7 @@ public class LoginHelper {
             Authentication authentication = authenticate(loginRequest.getUsername(), loginRequest.getPassword());
             MyUserDetail myUserDetail = (MyUserDetail) authentication.getPrincipal();
             String token = tokenProvider.generateToken(myUserDetail);
-            result = ResponseResultUtils.getResponseResult(LOGIN_SUCC, CODE_SUCC);
+            result = ResponseResultUtils.getResponseResult(LOGIN_SUCC, SUCC_CODE);
             responseData.setData(new LoginResponse(token));
         }catch (Exception e){
             logger.error("******Login Error getDataLogin()******", e);

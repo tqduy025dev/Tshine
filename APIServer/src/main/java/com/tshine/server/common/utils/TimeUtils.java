@@ -11,10 +11,6 @@ public class TimeUtils {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(AppConstants.DEFAULT_FORMAT_DATE);
     private static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat(AppConstants.DEFAULT_FORMAT_DATE_TIME);
 
-    public static String getStringTimeNow(){
-        return DATE_FORMAT.format(new Date());
-    }
-
     public static Timestamp getTimestampNow(){
         return new Timestamp(new Date().getTime());
     }

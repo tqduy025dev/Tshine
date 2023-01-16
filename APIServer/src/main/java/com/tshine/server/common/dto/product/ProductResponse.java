@@ -1,6 +1,6 @@
 package com.tshine.server.common.dto.product;
 
-import com.tshine.server.common.dto.base.FileResponse;
+import com.tshine.server.common.dto.system.FileResponse;
 
 import java.util.List;
 

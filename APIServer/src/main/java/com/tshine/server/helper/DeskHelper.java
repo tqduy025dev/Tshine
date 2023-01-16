@@ -1,50 +1,43 @@
 package com.tshine.server.helper;
 
-import com.tshine.server.apiserver.entities.product.Category;
-import com.tshine.server.apiserver.service.CategoryService;
+import com.tshine.server.apiserver.service.SystemDeskService;
 import com.tshine.server.common.dto.base.BaseData;
 import com.tshine.server.common.dto.base.Response;
 import com.tshine.server.common.dto.base.ResponseData;
 import com.tshine.server.common.dto.base.ResponseResult;
-import com.tshine.server.common.dto.product.CategoryRequest;
-import com.tshine.server.common.dto.product.CategoryResponse;
+import com.tshine.server.common.dto.system.DeskRequest;
 import com.tshine.server.common.utils.AppUtils;
-import com.tshine.server.common.utils.PagingUtils;
 import com.tshine.server.common.utils.ResponseResultUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 import static com.tshine.server.common.constants.AppConstants.FAIL_CODE;
 import static com.tshine.server.common.constants.AppConstants.SUCC_CODE;
 import static com.tshine.server.common.constants.MessageConstants.*;
 
 @Service
-public class CategoryHelper {
+public class DeskHelper {
     private final Logger logger = LoggerFactory.getLogger(CategoryHelper.class);
     private final Response response = new Response();
 
-    private final CategoryService categoryService;
+    private final SystemDeskService systemDeskService;
 
-    public CategoryHelper(CategoryService categoryService) {
-        this.categoryService = categoryService;
+    public DeskHelper(SystemDeskService systemDeskService) {
+        this.systemDeskService = systemDeskService;
     }
 
-    public Response createCategory(CategoryRequest categoryRequest){
+    public Response createDesk(DeskRequest deskRequest){
         ResponseResult responseResult;
         ResponseData responseData = new ResponseData();
         try {
-            BaseData category = categoryService.createCategory(categoryRequest);
-            if(category.isNotError()){
-                Object result = AppUtils.converToDTO(category.getResult(), CategoryRequest.class);
+            BaseData baseData = systemDeskService.createDesk(deskRequest);
+            if(baseData.isNotError()){
+                Object result = AppUtils.converToDTO(baseData.getResult(), DeskRequest.class);
                 responseResult = ResponseResultUtils.getResponseResult(CREATE_SUCC, SUCC_CODE);
                 responseData.setData(result);
             }else {
-                responseResult = ResponseResultUtils.getResponseResult(category.getStatus(), category.getError());
+                responseResult = ResponseResultUtils.getResponseResult(baseData.getStatus(), baseData.getError());
             }
         }catch (Exception e){
             logger.error("******UserHelper Error createEmployee()******", e);
@@ -56,18 +49,18 @@ public class CategoryHelper {
         return response;
     }
 
-    public Response findCategory(Map<String, String> map, Pageable pageable, boolean isPaging){
+    public Response findDeskById(String id){
         ResponseResult responseResult;
         ResponseData responseData = new ResponseData();
         try {
-            Page<Category> categorys = categoryService.findCategory(pageable);
-            Object result = AppUtils.converToDTO(categorys.getContent(), CategoryResponse[].class);
-            responseResult = ResponseResultUtils.getResponseResult(SUCC_KEY, SUCC_CODE);
-
-            if(isPaging){
-                PagingUtils.setDataResponse(responseData, categorys);
+            BaseData baseData = systemDeskService.findDeskById(id);
+            if(baseData.isNotError()){
+                Object result = AppUtils.converToDTO(baseData.getResult(), DeskRequest.class);
+                responseResult = ResponseResultUtils.getResponseResult(SUCC_KEY, SUCC_CODE);
+                responseData.setData(result);
+            }else {
+                responseResult = ResponseResultUtils.getResponseResult(baseData.getStatus(), baseData.getError());
             }
-            responseData.setData(result);
         }catch (Exception e){
             logger.error("******UserHelper Error createEmployee()******", e);
             responseResult = ResponseResultUtils.getResponseResult(FAIL_KEY, FAIL_CODE);

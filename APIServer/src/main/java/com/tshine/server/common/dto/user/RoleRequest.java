@@ -6,6 +6,7 @@ public class RoleRequest {
     private String code;
     private String name;
     private String description;
+    private String status;
     private List<String> permissions;
     private List<String> modules;
 
@@ -47,5 +48,13 @@ public class RoleRequest {
 
     public void setModules(List<String> modules) {
         this.modules = modules;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

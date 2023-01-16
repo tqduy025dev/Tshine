@@ -1,11 +1,12 @@
 package com.tshine.server.apiserver.entities.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.tshine.server.apiserver.entities.store.Discount;
+import com.tshine.server.apiserver.entities.system.SystemFile;
 import com.tshine.server.common.constants.AppConstants;
 import com.tshine.server.common.factory.KeyGenarator;
 import com.tshine.server.common.utils.TimeUtils;
-import com.tshine.server.apiserver.entities.store.Discount;
-import com.tshine.server.apiserver.entities.system.SystemFile;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -24,6 +25,7 @@ public class Product {
     private Integer productAmount;
     private Integer productSold;
     private Timestamp createdTime;
+    @UpdateTimestamp
     private Timestamp lastUpdated;
     private String createdBy;
     private String updatedBy;
@@ -48,7 +50,6 @@ public class Product {
     public Product() {
         this.productId = KeyGenarator.getKey();
         this.createdTime = TimeUtils.getTimestampNow();
-        this.lastUpdated = TimeUtils.getTimestampNow();
         this.status = AppConstants.STATUS_ACTIVE;
         this.productSold = 0;
     }

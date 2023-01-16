@@ -1,5 +1,6 @@
 package com.tshine.server.apiserver.authority;
 
+import com.tshine.server.apiserver.entities.user.UserInfo;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,7 @@ public class JwtTokenProvider implements InitializingBean {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + JWT_EXPIRATION);
         return Jwts.builder()
-                .claim("employeeId", userDetails.getUserInfo().getUserId())
+                .claim("userId", userDetails.getUserInfo().getUserId())
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
@@ -47,6 +48,15 @@ public class JwtTokenProvider implements InitializingBean {
             return ((MyUserDetail) principal).getUserInfo().getUserId();
         } else {
             return principal.toString();
+        }
+    }
+
+    public UserInfo getUserFromAuth() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof MyUserDetail) {
+            return ((MyUserDetail) principal).getUserInfo();
+        }else {
+            throw new NullPointerException();
         }
     }
 

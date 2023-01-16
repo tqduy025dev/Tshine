@@ -3,7 +3,6 @@ package com.tshine.server.helper;
 
 import com.tshine.server.apiserver.entities.role.Permission;
 import com.tshine.server.apiserver.entities.role.Role;
-import com.tshine.server.apiserver.entities.system.SystemModule;
 import com.tshine.server.apiserver.service.ModuleService;
 import com.tshine.server.apiserver.service.PermissionService;
 import com.tshine.server.apiserver.service.RoleService;
@@ -25,8 +24,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-import static com.tshine.server.common.constants.AppConstants.CODE_FAIL;
-import static com.tshine.server.common.constants.AppConstants.CODE_SUCC;
+import static com.tshine.server.common.constants.AppConstants.FAIL_CODE;
+import static com.tshine.server.common.constants.AppConstants.SUCC_CODE;
 import static com.tshine.server.common.constants.MessageConstants.*;
 
 
@@ -36,14 +35,12 @@ public class PermissionHelper {
 
     private final RoleService roleService;
     private final PermissionService permissionService;
-    private final ModuleService moduleService;
 
     private final Response response = new Response();
 
     public PermissionHelper(RoleService roleService, PermissionService permissionService, ModuleService moduleService) {
         this.roleService = roleService;
         this.permissionService = permissionService;
-        this.moduleService = moduleService;
     }
 
 
@@ -51,17 +48,14 @@ public class PermissionHelper {
         ResponseData responseData = new ResponseData();
         ResponseResult responseResult;
         try {
-            Pageable pageable = Pageable.unpaged();
-            Page<Permission> permissions = permissionService.findPermissionByCodes(roleRequest.getPermissions(), pageable);
-            Page<SystemModule> modules = moduleService.findModuleByCodes(roleRequest.getModules(), pageable);
-            Role result = roleService.createRole(roleRequest, permissions.getContent(), modules.getContent());
+            Role result = roleService.createRole(roleRequest);
             Object roleResponse = AppUtils.converToDTO(result, RoleResponse.class);
             responseData.setData(roleResponse);
-            responseResult = ResponseResultUtils.getResponseResult(CREATE_SUCC, CODE_SUCC);
+            responseResult = ResponseResultUtils.getResponseResult(CREATE_SUCC, SUCC_CODE);
 
         }catch (Exception e){
             logger.error("****************RoleHelper ERROR createRole()***************", e);
-            responseResult = ResponseResultUtils.getResponseResult(CREATE_FAIL, CODE_FAIL);
+            responseResult = ResponseResultUtils.getResponseResult(CREATE_FAIL, FAIL_CODE);
             responseData = null;
         }
 
@@ -77,10 +71,10 @@ public class PermissionHelper {
             Permission result = permissionService.createPermission(permissionRequest);
             Object permissionResponse = AppUtils.converToDTO(result, PermissionResponse.class);
             responseData.setData(permissionResponse);
-            responseResult = ResponseResultUtils.getResponseResult(CREATE_SUCC, CODE_SUCC);
+            responseResult = ResponseResultUtils.getResponseResult(CREATE_SUCC, SUCC_CODE);
         }catch (Exception e){
             logger.error("****************RoleHelper ERROR createPermission()***************", e);
-            responseResult = ResponseResultUtils.getResponseResult(CREATE_FAIL, CODE_FAIL);
+            responseResult = ResponseResultUtils.getResponseResult(CREATE_FAIL, FAIL_CODE);
             responseData = null;
         }
         response.setResponse(responseData);
@@ -101,10 +95,10 @@ public class PermissionHelper {
                     response.setResponse(roleResponses);
                     break;
             }
-            responseResult = ResponseResultUtils.getResponseResult(KEY_SUCC, CODE_SUCC);
+            responseResult = ResponseResultUtils.getResponseResult(SUCC_KEY, SUCC_CODE);
         }catch (Exception e){
             logger.error("****************RoleHelper ERROR createPermission()***************", e);
-            responseResult = ResponseResultUtils.getResponseResult(KEY_FAIL, CODE_FAIL);
+            responseResult = ResponseResultUtils.getResponseResult(FAIL_KEY, FAIL_CODE);
         }
 
         response.setResult(responseResult);

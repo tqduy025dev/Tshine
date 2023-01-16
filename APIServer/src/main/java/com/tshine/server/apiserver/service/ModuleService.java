@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ModuleService {
     SystemModule createModule(ModuleRequest moduleRequest) throws Exception;
-    Page<SystemModule> findModuleByCodes(List<String> codes, Pageable pageable);
+    List<SystemModule> findModuleByCodes(List<String> codes);
     SystemModule findModuleByCode(String code);
     Page<SystemModule> findAllModule(Pageable pageable);
 }
