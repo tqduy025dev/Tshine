@@ -1,0 +1,4 @@
+rootProject.name = 'Tshine'
+include 'Common'
+include 'APIServer'
+
