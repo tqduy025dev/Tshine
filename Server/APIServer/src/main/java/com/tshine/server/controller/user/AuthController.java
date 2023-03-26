@@ -1,6 +1,6 @@
 package com.tshine.server.controller.user;
 
-import com.tshine.server.apiserver.service.UserService;
+import com.tshine.service.service.UserService;
 import com.tshine.common.dto.authorize.LoginRequest;
 import com.tshine.common.dto.base.Response;
 import com.tshine.server.helper.LoginHelper;

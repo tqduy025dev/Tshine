@@ -2,7 +2,7 @@ package com.tshine.server.apiserver.authority;
 
 
 import com.tshine.common.entities.user.UserInfo;
-import com.tshine.server.apiserver.service.UserService;
+import com.tshine.service.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;

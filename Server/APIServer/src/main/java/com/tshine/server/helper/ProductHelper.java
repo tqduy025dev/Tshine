@@ -10,9 +10,9 @@ import com.tshine.common.entities.product.Product;
 import com.tshine.common.entities.store.Discount;
 import com.tshine.common.utils.AppUtils;
 import com.tshine.common.utils.ResponseResultUtils;
-import com.tshine.server.apiserver.service.CategoryService;
-import com.tshine.server.apiserver.service.DiscountService;
-import com.tshine.server.apiserver.service.ProductService;
+import com.tshine.service.service.CategoryService;
+import com.tshine.service.service.DiscountService;
+import com.tshine.service.service.ProductService;
 import com.tshine.common.utils.PagingUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -27,8 +27,6 @@ import java.util.Map;
 import static com.tshine.common.constants.AppConstants.FAIL_CODE;
 import static com.tshine.common.constants.AppConstants.SUCC_CODE;
 import static com.tshine.common.constants.MessageConstants.*;
-import static com.tshine.common.constants.AppConstants.FAIL_CODE;
-import static com.tshine.common.constants.AppConstants.SUCC_CODE;
 
 @Service
 public class ProductHelper {

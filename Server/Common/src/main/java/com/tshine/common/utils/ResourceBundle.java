@@ -8,8 +8,7 @@ import org.springframework.core.env.Environment;
 
 @Configuration
 @PropertySources({
-        @PropertySource(value = "classpath:message/message.properties", encoding = "UTF-8"),
-        @PropertySource(value = "classpath:application.properties", encoding = "UTF-8")
+        @PropertySource(value = "classpath:message/message.properties", encoding = "UTF-8")
 })
 public class ResourceBundle implements InitializingBean {
     private final Environment environment;

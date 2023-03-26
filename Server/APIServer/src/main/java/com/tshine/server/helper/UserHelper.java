@@ -2,7 +2,7 @@ package com.tshine.server.helper;
 
 import com.tshine.server.apiserver.authority.MyUserDetail;
 import com.tshine.common.entities.user.UserInfo;
-import com.tshine.server.apiserver.service.UserService;
+import com.tshine.service.service.UserService;
 import com.tshine.common.dto.base.Response;
 import com.tshine.common.dto.base.ResponseData;
 import com.tshine.common.dto.base.ResponseResult;

@@ -1,7 +1,7 @@
 package com.tshine.server.helper;
 
 import com.tshine.common.entities.product.Category;
-import com.tshine.server.apiserver.service.CategoryService;
+import com.tshine.service.service.CategoryService;
 import com.tshine.common.dto.base.BaseData;
 import com.tshine.common.dto.base.Response;
 import com.tshine.common.dto.base.ResponseData;

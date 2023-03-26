@@ -9,7 +9,7 @@ import com.tshine.common.entities.system.SystemModule;
 import com.tshine.common.utils.AppUtils;
 import com.tshine.common.utils.PagingUtils;
 import com.tshine.common.utils.ResponseResultUtils;
-import com.tshine.server.apiserver.service.ModuleService;
+import com.tshine.service.service.ModuleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
