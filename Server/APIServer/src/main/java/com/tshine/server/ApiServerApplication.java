@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan({"com.tshine.server","com.tshine.common", "com.tshine.service"})
+@ComponentScan({"com.tshine.server","com.tshine.common", "com.tshine.service", "com.tshine.bean"})
 @EntityScan("com.tshine.common.entities")
 @EnableJpaRepositories("com.tshine.service.repository")
 public class ApiServerApplication {

@@ -2,6 +2,7 @@ package com.tshine.common.constants;
 
 public class AppConstants {
     public final static String DEFAULT_ROLE                                     = "user";
+    public final static String DEFAULT_REQUEST_SIZE                             = "10MB";
 
     public final static String SUCC_CODE                                        = "00";
     public final static String FAIL_CODE                                        = "99";

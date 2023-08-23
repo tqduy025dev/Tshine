@@ -2,4 +2,5 @@ rootProject.name = 'Tshine'
 include 'Common'
 include 'APIServer'
 include 'Service'
+include 'Bean'
 
