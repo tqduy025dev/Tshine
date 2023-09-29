@@ -4,6 +4,7 @@ public class MessageConstants {
     public static final String SUCC_KEY                                             = "successfully";
     public static final String FAIL_KEY                                             = "failure";
     public static final String NOT_FOUND_KEY                                        = "not.found";
+    public static final String HEALTHY_KEY                                          = "application.healthy";
 
     public static final String LOGIN_SUCC                                           = "login.desc.succ";
     public static final String LOGIN_FAIL                                           = "login.desc.fail";

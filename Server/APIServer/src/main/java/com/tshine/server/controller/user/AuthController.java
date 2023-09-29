@@ -1,15 +1,20 @@
 package com.tshine.server.controller.user;
 
+import com.tshine.common.dto.base.ResponseResult;
+import com.tshine.common.utils.ResponseResultUtils;
 import com.tshine.service.service.UserService;
 import com.tshine.common.dto.authorize.LoginRequest;
 import com.tshine.common.dto.base.Response;
 import com.tshine.server.helper.LoginHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import static com.tshine.common.constants.AppConstants.FAIL_CODE;
+import static com.tshine.common.constants.AppConstants.SUCC_CODE;
+import static com.tshine.common.constants.MessageConstants.CREATE_FAIL;
+import static com.tshine.common.constants.MessageConstants.HEALTHY_KEY;
 
 @RestController
 @RequestMapping("/api")
@@ -21,6 +26,14 @@ public class AuthController {
 
     public AuthController(LoginHelper loginHelper) {
         this.loginHelper = loginHelper;
+    }
+
+    @GetMapping("/health-check")
+    public ResponseEntity<?> healthCheck() {
+        Response response = new Response();
+        ResponseResult result = ResponseResultUtils.getResponseResult(HEALTHY_KEY, SUCC_CODE);
+        response.setResult(result);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @PostMapping("/login")

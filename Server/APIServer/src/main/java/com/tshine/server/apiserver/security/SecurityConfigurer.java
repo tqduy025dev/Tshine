@@ -32,7 +32,7 @@ public class SecurityConfigurer {
         http
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
-                .authorizeRequests().antMatchers("/api/login", "/api/users/fixed-user")
+                .authorizeRequests().antMatchers("/api/login", "/api/health-check", "/api/users/fixed-user")
                 .permitAll().anyRequest().fullyAuthenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

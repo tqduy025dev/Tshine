@@ -3,6 +3,7 @@ package com.tshine.service.service.impl;
 import com.tshine.common.constants.AppConstants;
 import com.tshine.common.entities.role.Role;
 import com.tshine.common.entities.user.UserInfo;
+import com.tshine.common.utils.TimeUtils;
 import com.tshine.service.repository.UserRepositories;
 import com.tshine.service.service.AmazonClientService;
 import com.tshine.service.service.RoleService;
@@ -56,6 +57,7 @@ public class UserServiceImpl implements UserService {
         userInfo.setOldPassword(password);
         userInfo.getImage().setUrl(url);
         userInfo.setRole(role);
+        userInfo.setCreatedTime(TimeUtils.getTimestampNow());
         return userRepositories.save(userInfo);
     }
 
