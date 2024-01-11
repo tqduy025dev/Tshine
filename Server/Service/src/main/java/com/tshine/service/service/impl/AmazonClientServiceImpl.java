@@ -8,6 +8,7 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.tshine.common.entities.system.SystemFile;
+import com.tshine.common.utils.FileUtils;
 import com.tshine.service.service.AmazonClientService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -45,8 +46,8 @@ public class AmazonClientServiceImpl implements AmazonClientService {
 
     @Override
     public String uploadFileToS3(MultipartFile multipartFile) throws IOException {
-        File file = this.convertMultiPartToFile(multipartFile);
-        String fileName = this.generateFileName(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+        File file = FileUtils.convertMultiPartToFile(multipartFile);
+        String fileName = FileUtils.generateFileName(Objects.requireNonNull(multipartFile.getOriginalFilename()));
         this.uploadFile(fileName, file);
         file.deleteOnExit();
         return s3client.getUrl(bucketName, fileName).toString();
@@ -69,19 +70,6 @@ public class AmazonClientServiceImpl implements AmazonClientService {
     private void uploadFile(String fileName, File file) {
         s3client.putObject(new PutObjectRequest(bucketName, fileName, file)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
-    }
-
-    private File convertMultiPartToFile(MultipartFile multipartFile) throws IOException {
-        File file = new File(Objects.requireNonNull(multipartFile.getOriginalFilename()));
-        FileOutputStream fos = new FileOutputStream(file);
-        fos.write(multipartFile.getBytes());
-        fos.close();
-        return file;
-    }
-
-
-    private String generateFileName(String fileName) {
-        return System.currentTimeMillis() + fileName.replaceAll(" ", "_");
     }
 
 

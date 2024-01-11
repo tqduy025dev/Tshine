@@ -7,6 +7,10 @@ plugins {
 group 'com.tshine'
 version '1.0-SNAPSHOT'
 
+bootJar {
+    enabled = false
+}
+
 repositories {
     mavenCentral()
 }

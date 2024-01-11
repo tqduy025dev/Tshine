@@ -9,6 +9,8 @@ import com.tshine.common.utils.AppUtils;
 import com.tshine.service.repository.ProductRepositories;
 import com.tshine.service.service.AmazonClientService;
 import com.tshine.service.service.ProductService;
+import com.tshine.service.service.SystemFileService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -21,16 +23,20 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepositories productRepositories;
     private final AmazonClientService amazonClientService;
+    private final SystemFileService systemFileService;
 
-
-    public ProductServiceImpl(ProductRepositories productRepositories, AmazonClientService amazonClientService) {
+    @Value("${directory.location}")
+    private String pathDirectory;
+    public ProductServiceImpl(ProductRepositories productRepositories, AmazonClientService amazonClientService, SystemFileService systemFileService) {
         this.productRepositories = productRepositories;
         this.amazonClientService = amazonClientService;
+        this.systemFileService = systemFileService;
     }
 
     @Override
     public Product createProduct(ProductRequest productRequest, List<Category> categories, Discount discount) throws IOException {
-        List<SystemFile> systemFiles = amazonClientService.uploadFileToS3(productRequest.getImages());
+//        List<SystemFile> systemFiles = amazonClientService.uploadFileToS3(productRequest.getImages());
+        List<SystemFile> systemFiles = systemFileService.saveFileToStorage(productRequest.getImages(), pathDirectory);
         Product product = (Product) AppUtils.converToEntities(productRequest, Product.class);
         product.setImages(systemFiles);
         product.setCategories(categories);

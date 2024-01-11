@@ -4,8 +4,12 @@ plugins {
     id 'java'
 }
 
-group 'com.tshine.bean'
+group 'com.tshine'
 version '1.0-SNAPSHOT'
+
+bootJar {
+    enabled = false
+}
 
 repositories {
     mavenCentral()
