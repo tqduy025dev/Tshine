@@ -24,9 +24,8 @@ jobs:
         
     - name: Make gradlew executable
       run: chmod +x ${{ github.workspace }}/Server/gradlew
-      
-    - name: Change working directory
-      run: cd ${{ github.workspace }}/Server   
-      
+
     - name: Build with Gradle
-      run: ${{ github.workspace }}/Server/gradlew build --no-daemon
+      run: 
+        cd ${{ github.workspace }}/Server   
+        ./gradlew build --no-daem
