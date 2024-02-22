@@ -27,3 +27,16 @@ jobs:
 
     - name: Build with Gradle
       run: cd ${{ github.workspace }}/Server && ./gradlew build --no-daemon
+
+    - name: Log in to Quay.io
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.USER_QUAYIO }}
+        password: ${{ secrets.PASS_QUAYIO }}
+        server: quay.io
+
+    - name: Build Docker image
+      run: docker build -t quay.io/tqduy025_dev/tshine:latest .
+
+    - name: Push Docker image to Quay.io
+      run: docker push quay.io/tqduy025_dev/tshine:latest
