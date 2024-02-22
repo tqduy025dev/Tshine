@@ -29,7 +29,7 @@ jobs:
       run: cd ${{ github.workspace }}/Server && ./gradlew build --no-daemon
 
     - name: Log in to Quay.io
-      run: docker login -u=${{ secrets.PASS_QUAYIO } -p=${{ secrets.USER_QUAYIO }} quay.io
+      run: docker login -u=${{ secrets.PASS_QUAYIO }} -p=${{ secrets.USER_QUAYIO }} quay.io
         
     - name: Build Docker image
       run: cd ${{ github.workspace }}/Server && docker build -t quay.io/tqduy025_dev/tshine:latest .
