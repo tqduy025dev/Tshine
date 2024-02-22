@@ -27,5 +27,5 @@ jobs:
 
     - name: Build with Gradle
       run: 
-        cd ${{ github.workspace }}/Server   
-        ./gradlew build --no-daem
+        cd "${{ github.workspace }}/Server"   
+        ./gradlew build --no-daemon
