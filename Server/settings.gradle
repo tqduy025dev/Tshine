@@ -1,4 +1,4 @@
-rootProject.name = 'Tshine'
+rootProject.name = 'Server'
 include 'Common'
 include 'APIServer'
 include 'Service'
