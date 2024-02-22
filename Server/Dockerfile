@@ -1,12 +1,12 @@
 FROM tomcat:9-jre8
 
 RUN mv /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps/
-COPY APIServer.war /usr/local/tomcat/webapps/APIServer.war
-COPY server.xml /usr/local/tomcat/conf/server.xml
-COPY tomcat-users.xml /usr/local/tomcat/conf/
-COPY context.xml /usr/local/tomcat/webapps/manager/META-INF/context.xml
-COPY context.xml /usr/local/tomcat/webapps/host-manager/META-INF/context.xml
-COPY manager.xml /usr/local/tomcat/webapps/host-manager/WEB-INF/manager.xml
+COPY APIServer/build/libs/APIServer-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/APIServer.war
+COPY tomcat/server.xml /usr/local/tomcat/conf/server.xml
+COPY tomcat/tomcat-users.xml /usr/local/tomcat/conf/
+COPY tomcat/context.xml /usr/local/tomcat/webapps/manager/META-INF/context.xml
+COPY tomcat/context.xml /usr/local/tomcat/webapps/host-manager/META-INF/context.xml
+COPY tomcat/manager.xml /usr/local/tomcat/webapps/host-manager/WEB-INF/manager.xml
 
 COPY tshine.env /usr/local/tomcat/conf/tshine.env
 
