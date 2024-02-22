@@ -23,4 +23,6 @@ jobs:
         java-version: '8'
 
     - name: Build with Gradle
-      run: ./gradlew build --no-daemon
+      run: 
+        cd TShine/Server/gradle/wrapper
+        ./gradlew build --no-daemon
