@@ -21,6 +21,9 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '8'
-
+        
+    - name: Make gradlew executable
+      run: chmod +x ${{ github.workspace }}/Server/gradlew
+      
     - name: Build with Gradle
       run: ${{ github.workspace }}/Server/gradlew build --no-daemon
