@@ -32,7 +32,7 @@ jobs:
       run: echo ${{ secrets.PASS_QUAYIO }} | docker login quay.io -u ${{ secrets.USER_QUAYIO }} --password-stdin
         
     - name: Build Docker image
-      run: cd ${{ github.workspace }}/Server && docker build -t quay.io/tqduy025_dev/tshine:latest .
+      run: cd ${{ github.workspace }}/Server && docker build -t quay.io/tqduy025_dev/tshine:"$(date +%Y%m%d)" .
 
     - name: Push Docker image to Quay.io
       run: docker push quay.io/tqduy025_dev/tshine:latest
