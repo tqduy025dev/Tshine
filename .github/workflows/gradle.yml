@@ -23,6 +23,4 @@ jobs:
         java-version: '8'
 
     - name: Build with Gradle
-      run: 
-        cd "Server"
-        ./gradlew build --no-daemon
+      run: ./gradlew build --no-daemon
