@@ -30,9 +30,15 @@ jobs:
 
     - name: Log in to Quay.io
       run: echo ${{ secrets.PASS_QUAYIO }} | docker login quay.io -u ${{ secrets.USER_QUAYIO }} --password-stdin
-        
+
     - name: Build Docker image
-      run: cd ${{ github.workspace }}/Server && docker build -t quay.io/tqduy025_dev/tshine:"$(date +%Y%m%d)" .
+      run: cd ${{ github.workspace }}/Server && docker build -t quay.io/tqduy025_dev/tshine:${{ env.VERSION_NUMBER }} .
 
     - name: Push Docker image to Quay.io
-      run: docker push quay.io/tqduy025_dev/tshine:latest
+      run: docker push quay.io/tqduy025_dev/tshine:${{ env.VERSION_NUMBER }}
+
+    - name: Increment version number
+      run: |
+          OLD_VERSION=$(echo ${{ env.VERSION_NUMBER }} | cut -d "." -f 2)
+          NEW_VERSION=$((OLD_VERSION + 1))
+          echo "VERSION_NUMBER=$(echo ${{ env.VERSION_NUMBER }} | cut -d "." -f 1).${NEW_VERSION}" >> $GITHUB_ENV
