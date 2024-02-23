@@ -48,7 +48,7 @@
 -->
 
   <role rolename="admin"/>
-  <user username="admin_duy" password="Hhmm.01657461634" roles="standard,manager,admin,manager-gui,manager-jmx,manager-script,manager-status,host-manager,admin-gui"/>
+  <user username="${TOMCAT_USER}" password="${TOMCAT_PASS}" roles="standard,manager,admin,manager-gui,manager-jmx,manager-script,manager-status,host-manager,admin-gui"/>
 <!--
   <role rolename="tomcat"/>
   <role rolename="role1"/>
