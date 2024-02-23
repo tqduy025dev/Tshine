@@ -39,11 +39,11 @@ jobs:
 
     - name: Increment version number and update repository variable
       run: |
-        OLD_VERSION=$(echo ${{ secrets.VERSION_NUMBER }} | cut -d "." -f 2)
+        OLD_VERSION=$(echo ${{ vars.VERSION_NUMBER }} | cut -d "." -f 2)
         NEW_VERSION=$((OLD_VERSION + 1))
-        VERSION_NUMBER=$(echo ${{ secrets.VERSION_NUMBER }} | cut -d "." -f 1).${NEW_VERSION}
+        VERSION_NUMBER=$(echo ${{ vars.VERSION_NUMBER }} | cut -d "." -f 1).${NEW_VERSION}
         echo "VERSION_NUMBER = $VERSION_NUMBER"
-        echo $VERSION_NUMBER | gh secret set VERSION_NUMBER --repository Tshine/repository --body -
+        echo $VERSION_NUMBER | gh secret set VERSION_NUMBER --body -
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
         
