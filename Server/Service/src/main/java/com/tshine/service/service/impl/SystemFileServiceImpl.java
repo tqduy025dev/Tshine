@@ -3,32 +3,29 @@ package com.tshine.service.service.impl;
 import com.tshine.common.entities.system.SystemFile;
 import com.tshine.common.utils.FileUtils;
 import com.tshine.service.service.SystemFileService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class SystemFileServiceImpl implements SystemFileService {
-    private final ApplicationContext context;
-
-    public SystemFileServiceImpl(ApplicationContext context) {
-        this.context = context;
-    }
+    private final Logger logger = LoggerFactory.getLogger(SystemFileServiceImpl.class);
 
     @Override
     public String saveFileToStorage(MultipartFile file, String... dir) throws IOException {
+        logger.info("******Begin SystemFileServiceImpl saveFileToStorage()******");
         File filepath = FileUtils.createFile(file.getOriginalFilename(), dir);
         FileCopyUtils.copy(file.getInputStream(), Files.newOutputStream(filepath.toPath()));
+        logger.info("******End SystemFileServiceImpl saveFileToStorage()******");
         return filepath.getAbsolutePath();
     }
 

@@ -13,6 +13,8 @@ import com.tshine.common.dto.user.UserRequest;
 import com.tshine.common.factory.KeyGenarator;
 import com.tshine.common.utils.AppUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
@@ -27,6 +29,8 @@ import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
+    private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
     private final UserRepositories userRepositories;
     private final AmazonClientService amazonClientService;
     private final RoleService roleService;
@@ -48,6 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserInfo createUser(UserRequest request) throws IOException {
+        logger.info("******Begin UserServiceImpl createUser()******");
         Role role;
         if(StringUtils.isNotEmpty(request.getRole())){
             role = roleService.findRoleById(request.getRole());
@@ -63,6 +68,8 @@ public class UserServiceImpl implements UserService {
         userInfo.getImage().setUrl(url);
         userInfo.setRole(role);
         userInfo.setCreatedTime(TimeUtils.getTimestampNow());
+        logger.info("******UserServiceImpl createUser() with url image=" + url);
+        logger.info("******End UserServiceImpl createUser()******");
         return userRepositories.save(userInfo);
     }
 

@@ -27,7 +27,9 @@ public class FileUtils {
     }
     public static File createFile(String fileName, String... pathFolder) throws IOException {
         File folderPath = FileUtils.createFolder(pathFolder);
+        logger.info("******FileUtils folderPath=" + folderPath.getAbsolutePath());
         File file = new File(folderPath.getPath() + "/" + generateFileName(fileName));
+        logger.info("******FileUtils filePath=" + file.getAbsolutePath());
         if(file.createNewFile()){
             return file;
         }
