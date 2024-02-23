@@ -8,8 +8,6 @@ COPY tomcat/context.xml /usr/local/tomcat/webapps/manager/META-INF/context.xml
 COPY tomcat/context.xml /usr/local/tomcat/webapps/host-manager/META-INF/context.xml
 COPY tomcat/manager.xml /usr/local/tomcat/webapps/host-manager/WEB-INF/manager.xml
 
-COPY tshine.env /usr/local/tomcat/conf/tshine.env
-
 # COPY setenv.sh /usr/local/tomcat/bin/setenv.sh
 
 # RUN chmod +x /usr/local/tomcat/bin/setenv.sh
