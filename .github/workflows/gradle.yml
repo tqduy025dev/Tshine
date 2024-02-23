@@ -51,6 +51,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASS }}
           script: |
+            cd /root/docker-spring
             sudo podman rm -f springcontainer
             sudo podman pull quay.io/tqduy025_dev/tshine:${{ vars.VERSION_NUMBER }}
             sudo podman run -d --name springcontainer -p 0.0.0.0:8080:8080 --env-file tshine.env  -v /root/docker-spring/TShine:/ApplicationFileSystem quay.io/tqduy025_dev/tshine:${{ vars.VERSION_NUMBER }}
