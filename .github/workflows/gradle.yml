@@ -11,8 +11,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      GLOBAL_VERSION: ${{ vars.VERSION_NUMBER }}
+    outputs:
+      globalVersion: ${{ vars.VERSION_NUMBER }}
     
     steps:
     - name: Checkout code
@@ -48,14 +48,6 @@ jobs:
         echo $VERSION_NUMBER | gh variable set VERSION_NUMBER --body "$VERSION_NUMBER"
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
-    # Đặt giá trị của biến toàn cục vào output để chuyển sang job 2
-    - name: Pass value to job deploy
-      id: pass_to_deploy
-      run: |
-        echo "GLOBAL_VERSION = $GLOBAL_VERSION"
-        echo "::set-output name=globalVersion::$GLOBAL_VERSION"
-
 
   deploy:
     needs: build
