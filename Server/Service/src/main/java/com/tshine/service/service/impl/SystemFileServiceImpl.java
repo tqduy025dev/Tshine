@@ -26,14 +26,14 @@ public class SystemFileServiceImpl implements SystemFileService {
     }
 
     @Override
-    public String saveFileToStorage(MultipartFile file, String dir) throws IOException {
-        File filepath = FileUtils.createFile(file.getOriginalFilename(), dir, "test");
+    public String saveFileToStorage(MultipartFile file, String... dir) throws IOException {
+        File filepath = FileUtils.createFile(file.getOriginalFilename(), dir);
         FileCopyUtils.copy(file.getInputStream(), Files.newOutputStream(filepath.toPath()));
         return filepath.toString();
     }
 
     @Override
-    public List<SystemFile> saveFileToStorage(MultipartFile[] files, String dir) throws IOException {
+    public List<SystemFile> saveFileToStorage(MultipartFile[] files, String... dir) throws IOException {
         List<SystemFile> systemFiles = new ArrayList<>();
         for (MultipartFile multipartFile : files) {
             String url = this.saveFileToStorage(multipartFile, dir);

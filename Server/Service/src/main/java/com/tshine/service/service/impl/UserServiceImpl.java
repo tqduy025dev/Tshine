@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
             role = roleService.findRoleByCode(AppConstants.DEFAULT_ROLE);
         }
 //        String url = amazonClientService.uploadFileToS3(request.getImage());
-        String url = systemFileService.saveFileToStorage(request.getImage(), pathDirectory) ;
+        String url = systemFileService.saveFileToStorage(request.getImage(), pathDirectory, "user") ;
         UserInfo userInfo = (UserInfo) AppUtils.converToEntities(request, UserInfo.class);
         String password = KeyGenarator.getDefaultPassword(passwordEncoder);
         userInfo.setPassword(password);

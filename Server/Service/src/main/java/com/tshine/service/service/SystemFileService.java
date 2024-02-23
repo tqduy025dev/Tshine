@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface SystemFileService {
 
-    String saveFileToStorage(MultipartFile file, String dir) throws IOException;
-    List<SystemFile> saveFileToStorage(MultipartFile[] files, String dir) throws IOException;
+    String saveFileToStorage(MultipartFile file, String... dir) throws IOException;
+    List<SystemFile> saveFileToStorage(MultipartFile[] files, String... dir) throws IOException;
 }

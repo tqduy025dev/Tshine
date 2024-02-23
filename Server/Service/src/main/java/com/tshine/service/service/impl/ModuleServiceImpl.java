@@ -33,7 +33,7 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public SystemModule createModule(ModuleRequest moduleRequest) throws Exception {
 //        String url = amazonClientService.uploadFileToS3(moduleRequest.getIcon());
-        String url = systemFileService.saveFileToStorage(moduleRequest.getIcon(), pathDirectory);
+        String url = systemFileService.saveFileToStorage(moduleRequest.getIcon(), pathDirectory, "module");
         SystemModule systemModule = (SystemModule) AppUtils.converToEntities(moduleRequest, SystemModule.class);
         systemModule.setpModule(null);
         if(StringUtils.isNotEmpty(moduleRequest.getpModule())){

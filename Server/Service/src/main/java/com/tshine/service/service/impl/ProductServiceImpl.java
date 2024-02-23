@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product createProduct(ProductRequest productRequest, List<Category> categories, Discount discount) throws IOException {
 //        List<SystemFile> systemFiles = amazonClientService.uploadFileToS3(productRequest.getImages());
-        List<SystemFile> systemFiles = systemFileService.saveFileToStorage(productRequest.getImages(), pathDirectory);
+        List<SystemFile> systemFiles = systemFileService.saveFileToStorage(productRequest.getImages(), pathDirectory, "product");
         Product product = (Product) AppUtils.converToEntities(productRequest, Product.class);
         product.setImages(systemFiles);
         product.setCategories(categories);
