@@ -42,7 +42,7 @@ public class FileUtils {
         }
         File folderPath = new File(path.toString());
         if (!folderPath.isDirectory()) {
-            boolean isCreated = folderPath.mkdir();
+            boolean isCreated = folderPath.mkdirs();
             if(isCreated){
                 FileUtils.chmod(folderPath, "777");
             }

@@ -29,7 +29,7 @@ public class SystemFileServiceImpl implements SystemFileService {
     public String saveFileToStorage(MultipartFile file, String... dir) throws IOException {
         File filepath = FileUtils.createFile(file.getOriginalFilename(), dir);
         FileCopyUtils.copy(file.getInputStream(), Files.newOutputStream(filepath.toPath()));
-        return filepath.toString();
+        return filepath.getAbsolutePath();
     }
 
     @Override
