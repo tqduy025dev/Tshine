@@ -30,4 +30,6 @@ public class AppConstants {
     public final static String DEFAULT_FORMAT_DATE_TIME                         = "MM/dd/yyyy HH:mm:ss";
 
     public final static String STRING_EMPTY                                     = "";
+
+    public final static String TEST                                             = "";
 }
